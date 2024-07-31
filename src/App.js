@@ -57,7 +57,7 @@ const RouteWrapper = ({ authToken, setAuthToken, username, setUsername, handleLo
           element={<ProductList isAuthenticated={!!authToken} username={username} onLogout={handleLogout} />}
         />
         <Route path="/loading" element={<LoadingPage />} />
-        <Route path="/" element={<Navigate to="/products" />} />
+        <Route path="/" element={<Navigate to="/login" />} /> {/* Redirige a /login por defecto */}
       </Routes>
     </>
   );
