@@ -4,7 +4,7 @@ import { useCart } from '../contexts/CartContext';
 import './Product.css'; // Asegúrate de que la ruta sea correcta
 
 
-const Product = ({ id, title, description, price, category, image }) => {
+const Product = ({ id, title, description, price, category, image, onDelete  }) => {
   // Utilizar el contexto del carrito
   const { cart, dispatch } = useCart();
 
@@ -20,6 +20,21 @@ const Product = ({ id, title, description, price, category, image }) => {
   // Manejar remover del carrito
   const handleRemoveFromCart = () => {
     dispatch({ type: 'REMOVE_FROM_CART', payload: { productId: id } });
+  };
+
+  const handleDelete = () => {
+    const confirmed = window.confirm(`¿Estás seguro de que quieres eliminar el producto "${title}"?`);
+    if (confirmed) {
+      fetch(`https://fakestoreapi.com/products/${id}`, {
+        method: 'DELETE',
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Product deleted:', data);
+          onDelete(id);
+        })
+        .catch(error => console.error('Error:', error));
+    }
   };
 
   return (
@@ -45,8 +60,10 @@ const Product = ({ id, title, description, price, category, image }) => {
               </div>
             ) : (
               <button className="btn btn-dark" onClick={handleAddToCart}>Añadir al carrito</button>
-            )}
+            )}&nbsp;
+            <button className="btn btn-danger" onClick={handleDelete}>Eliminar</button>
           </div>
+          
         </div>
       </div>
     </div>
