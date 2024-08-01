@@ -103,7 +103,7 @@ const AddProductForm = ({ onProductAdded, setMessage, setMessageType }) => {
           onChange={(e) => setImage(e.target.value)}
         />
       </div>
-      <button type="submit" className="btn btn-primary">Añadir Producto</button>
+      <button type="submit" className="btn btn-dark">Añadir Producto</button>
     </form>
   );
 };

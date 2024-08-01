@@ -1,0 +1,22 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .card-img-top {
+    width: 100%;
+    object-fit: contain; /* Ajusta la imagen al contenedor */
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el espacio para que el contenido se alinee en la parte inferior */
+    height: 100%; /* Asegura que la tarjeta ocupe el 100% de su contenedor */
+  }
+  
+  .card-content {
+    margin-top: auto; /* Empuja el contenido hacia abajo */
+  }
+  

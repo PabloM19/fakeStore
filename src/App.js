@@ -42,7 +42,7 @@ const RouteWrapper = ({ authToken, setAuthToken, username, setUsername, handleLo
   const location = useLocation();
   
   // Check if the current route is not the login page or loading page
-  const shouldShowHeader = location.pathname !== '/login' && location.pathname !== '/loading' && !isLoggingOut;
+  const shouldShowHeader = location.pathname !== '/login' && location.pathname !== '/loading' && location.pathname !== '/products' && !isLoggingOut;
   
   return (
     <>
@@ -58,6 +58,7 @@ const RouteWrapper = ({ authToken, setAuthToken, username, setUsername, handleLo
         />
         <Route path="/loading" element={<LoadingPage />} />
         <Route path="/" element={<Navigate to="/login" />} /> {/* Redirige a /login por defecto */}
+        
       </Routes>
     </>
   );

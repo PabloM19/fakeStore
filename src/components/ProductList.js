@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Product from './Product';
 import Pagination from './Pagination';
+import Header from './Header'; // Asegúrate de importar el Header
 import Footer from './Footer';
 import CategoryFilter from './CategoryFilter';
 import AddProductForm from './AddProductForm';
@@ -66,6 +67,7 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
 
   return (
     <div>
+      <Header username={username} onLogout={onLogout} />
       {isAuthenticated ? (
         <div className="container mt-4">
           {message && (
