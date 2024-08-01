@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../contexts/CartContext';
+import Cart from './Cart'; // Asegúrate de importar el componente Cart
+import './Header.css'; // Asegúrate de que la ruta sea correcta
 
-const Header = ({ username, onLogout, cartItems = [], onUpdateCart }) => {
+const Header = ({ username, onLogout }) => {
   const [showCart, setShowCart] = useState(false);
+  const { cart } = useCart();
+  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
-  const handleHover = (hover) => {
-    setShowCart(hover);
+  const handleCartClick = () => {
+    setShowCart(!showCart);
   };
-
-  const handleQuantityChange = (id, delta) => {
-    onUpdateCart(id, delta);
-  };
-
-  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,16 +21,9 @@ const Header = ({ username, onLogout, cartItems = [], onUpdateCart }) => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-            {/* Aquí puedes añadir más enlaces de navegación si es necesario */}
-          </ul>
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"></ul>
           <div className="dropdown-cart position-relative">
-            <button 
-              className="btn btn-outline-dark" 
-              type="button"
-              onMouseEnter={() => handleHover(true)}
-              onMouseLeave={() => handleHover(false)}
-            >
+            <button className="btn btn-outline-dark" onClick={handleCartClick}>
               <i className="bi bi-cart-fill me-1"></i>
               Cart
               <span className="badge bg-dark text-white ms-1 rounded-pill">{totalItems}</span>
@@ -55,6 +47,7 @@ const Header = ({ username, onLogout, cartItems = [], onUpdateCart }) => {
           )}
         </div>
       </div>
+      {showCart && <Cart onClose={() => setShowCart(false)} />}
     </nav>
   );
 };

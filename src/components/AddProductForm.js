@@ -1,5 +1,4 @@
-// src/components/AddProductForm.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const AddProductForm = ({ onProductAdded, setMessage, setMessageType }) => {
   const [name, setName] = useState('');
@@ -7,6 +6,21 @@ const AddProductForm = ({ onProductAdded, setMessage, setMessageType }) => {
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    // Fetch categories from the API
+    fetch('https://fakestoreapi.com/products/categories')
+      .then(response => response.json())
+      .then(data => {
+        setCategories(data);
+      })
+      .catch(error => {
+        console.error('Error fetching categories:', error);
+        setMessage('Error al cargar las categorías.');
+        setMessageType('danger');
+      });
+  }, [setMessage, setMessageType]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -75,13 +89,19 @@ const AddProductForm = ({ onProductAdded, setMessage, setMessageType }) => {
       </div>
       <div className="mb-3">
         <label htmlFor="category" className="form-label">Categoría</label>
-        <input
-          type="text"
-          className="form-control"
+        <select 
+          className="form-select" 
           id="category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-        />
+        >
+          <option value="">Selecciona una categoría</option>
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {cat.charAt(0).toUpperCase() + cat.slice(1)}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="mb-3">
         <label htmlFor="description" className="form-label">Descripción</label>

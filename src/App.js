@@ -1,11 +1,13 @@
 // src/App.js
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import Login from './components/Login';
 import Header from './components/Header';
 import LoadingPage from './components/LoadingPage';
+import Cart from './components/Cart';
+import { CartProvider } from './contexts/CartContext';
 
 function App() {
   const [authToken, setAuthToken] = useState(localStorage.getItem('authToken'));
@@ -25,16 +27,18 @@ function App() {
   };
 
   return (
-    <Router>
-      <RouteWrapper 
-        authToken={authToken} 
-        setAuthToken={setAuthToken} 
-        username={username} 
-        setUsername={setUsername} 
-        handleLogout={handleLogout} 
-        isLoggingOut={isLoggingOut} 
-      />
-    </Router>
+    <CartProvider>
+      <Router>
+        <RouteWrapper 
+          authToken={authToken} 
+          setAuthToken={setAuthToken} 
+          username={username} 
+          setUsername={setUsername} 
+          handleLogout={handleLogout} 
+          isLoggingOut={isLoggingOut} 
+        />
+      </Router>
+    </CartProvider>
   );
 }
 
@@ -43,7 +47,7 @@ const RouteWrapper = ({ authToken, setAuthToken, username, setUsername, handleLo
   
   // Check if the current route is not the login page or loading page
   const shouldShowHeader = location.pathname !== '/login' && location.pathname !== '/loading' && location.pathname !== '/products' && !isLoggingOut;
-  
+
   return (
     <>
       {shouldShowHeader && <Header username={username} onLogout={handleLogout} />}
@@ -56,9 +60,9 @@ const RouteWrapper = ({ authToken, setAuthToken, username, setUsername, handleLo
           path="/products"
           element={<ProductList isAuthenticated={!!authToken} username={username} onLogout={handleLogout} />}
         />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/loading" element={<LoadingPage />} />
         <Route path="/" element={<Navigate to="/login" />} /> {/* Redirige a /login por defecto */}
-        
       </Routes>
     </>
   );

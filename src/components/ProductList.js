@@ -2,12 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import Product from './Product';
 import Pagination from './Pagination';
-import Header from './Header'; // Asegúrate de importar el Header
+import Header from './Header';
 import Footer from './Footer';
 import CategoryFilter from './CategoryFilter';
 import AddProductForm from './AddProductForm';
 import Overlay from './Overlay';
-import './Overlay.css'; // Importa el CSS del overlay
+import { useCart } from '../contexts/CartContext'; // Importar el contexto del carrito
+import './Overlay.css';
 
 const ProductList = ({ isAuthenticated, username, onLogout }) => {
   const [products, setProducts] = useState([]);
@@ -17,6 +18,9 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
   const [message, setMessage] = useState(null);
   const [messageType, setMessageType] = useState(null);
   const productsPerPage = 9;
+
+  // Utilizar el contexto del carrito
+  const { addToCart } = useCart();
 
   useEffect(() => {
     fetchProducts();
@@ -65,6 +69,10 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const handleAddToCart = (product) => {
+    addToCart(product); // Añadir al carrito
+  };
+
   return (
     <div>
       <Header username={username} onLogout={onLogout} />
@@ -88,7 +96,12 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
             <div className="col-md-9">
               <div className="row">
                 {currentProducts.map(product => (
-                  <Product key={product.id} {...product} onDelete={handleProductDeleted} />
+                  <Product
+                    key={product.id}
+                    {...product}
+                    onAddToCart={() => handleAddToCart(product)} // Pasar la función al componente Product
+                    onDelete={handleProductDeleted}
+                  />
                 ))}
               </div>
               <Pagination

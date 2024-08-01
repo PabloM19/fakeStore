@@ -1,0 +1,7 @@
+/* src/components/ProductList.css */
+.product-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
