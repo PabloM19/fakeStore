@@ -2,7 +2,7 @@ import React, { useState, useEffect  } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import Cart from './Cart';
-import { FaBars, FaTimes, FaUser, FaShoppingBag, FaSearch } from 'react-icons/fa';
+import { FaBars, FaTimes, FaUser, FaSearch } from 'react-icons/fa';
 import './Header.css';
 import logo from '../assets/logo.png';
 import { useCategory } from '../contexts/CategoryContext';
@@ -38,7 +38,7 @@ const Header = ({ username, onLogout }) => {
 
 
   return (
-    <header className="bg-light border-bottom py-2">
+    <header className="bg-light py-4">
       <div className="container px-4 px-lg-5 d-flex justify-content-between align-items-center">
         <Link className="navbar-brand d-flex align-items-center" to="/products">
           <FaSearch className="me-2" />

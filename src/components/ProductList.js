@@ -16,7 +16,7 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [message, setMessage] = useState(null);
   const [messageType, setMessageType] = useState(null);
-  const productsPerPage = 9;
+  const productsPerPage = 12;
   const { selectedCategory } = useCategory(); // Usa el contexto para obtener la categoría seleccionada
 
   // Utilizar el contexto del carrito
@@ -76,7 +76,7 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
             </div>
           )}
           <div className="row">
-            <div className="col-md-3 mb-4">
+            <div className="col-md-3 mb-4" style={{display:"none"}}>
               <AddProductForm onProductAdded={handleProductAdded} setMessage={setMessage} setMessageType={setMessageType} />
               <CategoryFilter 
                 categories={categories} 
@@ -84,7 +84,7 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
                 onChange={(category) => {}} // No necesita función de cambio aquí
               />
             </div>
-            <div className="col-md-9">
+            <div className="col-md-12">
               <div className="row">
                 {currentProducts.map(product => (
                   <Product

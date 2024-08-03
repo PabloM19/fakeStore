@@ -1,10 +1,8 @@
-// src/components/Product.js
 import React from 'react';
 import { useCart } from '../contexts/CartContext';
 import './Product.css'; // Asegúrate de que la ruta sea correcta
 
-
-const Product = ({ id, title, description, price, category, image, onDelete  }) => {
+const Product = ({ id, title, description, price, category, image, onDelete }) => {
   // Utilizar el contexto del carrito
   const { cart, dispatch } = useCart();
 
@@ -37,34 +35,41 @@ const Product = ({ id, title, description, price, category, image, onDelete  }) 
     }
   };
 
+  const truncateTitle = (str, maxLength) => {
+    if (str.length <= maxLength) return str;
+    return str.slice(0, maxLength) + '...';
+  };
+
   return (
-    <div className="col-md-4 mb-4">
-      <div className="card" style={{ minHeight: "800px"}}>
+    <div className="col-lg-2 col-md-3 col-sm-4 col-5">
+      <div style={{marginBottom:"20px"}}>
+      <div className="card border-0" style={{boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.3)"}}>
         <img
           src={image}
           className="card-img-top"
           alt={title}
-          style={{ minHeight: "450px", objectFit: "contain" }}
+          style={{ height: '200px', objectFit: 'contain' }}
         />
-        <div className="card-body" >
-          <h5 className="card-title">{title}</h5>
-          <p className="card-text">{description}</p>
-          <p className="card-text"><small className="text-muted">{category}</small></p>
-          <div className="card-content">
-            <p className="card-text">{price} USD</p>
-            {quantity > 0 ? (
-              <div className="product-counter">
-                <button className="btn btn-outline-dark" onClick={handleRemoveFromCart}>-</button>
-                <span>{quantity}</span>
-                <button className="btn btn-outline-dark" onClick={handleAddToCart}>+</button>
-              </div>
-            ) : (
-              <button className="btn btn-dark" onClick={handleAddToCart}>Añadir al carrito</button>
-            )}&nbsp;
-            <button className="btn btn-danger" onClick={handleDelete}>Eliminar</button>
-          </div>
+        <div className="card-body p-2 d-flex flex-column">
+        <p className="card-text mb-1">{truncateTitle(title, 20)}</p>
+          <p className="card-text mb-1"><strong>${price}</strong></p>
+          <p className="card-text text-muted mb-2">{category}</p>
           
         </div>
+      </div>
+      <div className="d-flex justify-content-between mt-auto">
+            {quantity > 0 ? (
+              <div className="d-flex align-items-center">
+                <span>You have alredy:</span>
+                <button className="btn btn-outline-dark btn-sm me-2" onClick={handleRemoveFromCart}>-</button>
+                <span className="me-2">{quantity}</span>
+                <button className="btn btn-outline-dark btn-sm" onClick={handleAddToCart}>+</button>
+              </div>
+            ) : (
+              <span className="" onClick={handleAddToCart}>Add to cart</span>
+            )}
+            <span className="" onClick={handleDelete}>Delete</span>
+      </div>
       </div>
     </div>
   );
