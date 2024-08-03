@@ -8,6 +8,7 @@ import Header from './components/Header';
 import LoadingPage from './components/LoadingPage';
 import Cart from './components/Cart';
 import { CartProvider } from './contexts/CartContext';
+import { CategoryProvider } from './contexts/CategoryContext';
 
 function App() {
   const [authToken, setAuthToken] = useState(localStorage.getItem('authToken'));
@@ -29,6 +30,7 @@ function App() {
   return (
     <CartProvider>
       <Router>
+      <CategoryProvider>
         <RouteWrapper 
           authToken={authToken} 
           setAuthToken={setAuthToken} 
@@ -37,6 +39,7 @@ function App() {
           handleLogout={handleLogout} 
           isLoggingOut={isLoggingOut} 
         />
+        </CategoryProvider>
       </Router>
     </CartProvider>
   );

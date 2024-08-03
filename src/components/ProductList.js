@@ -1,4 +1,3 @@
-// src/components/ProductList.js
 import React, { useState, useEffect } from 'react';
 import Product from './Product';
 import Pagination from './Pagination';
@@ -8,16 +7,17 @@ import CategoryFilter from './CategoryFilter';
 import AddProductForm from './AddProductForm';
 import Overlay from './Overlay';
 import { useCart } from '../contexts/CartContext'; // Importar el contexto del carrito
+import { useCategory } from '../contexts/CategoryContext'; // Importar el contexto de categoría
 import './Overlay.css';
 
 const ProductList = ({ isAuthenticated, username, onLogout }) => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [message, setMessage] = useState(null);
   const [messageType, setMessageType] = useState(null);
   const productsPerPage = 9;
+  const { selectedCategory } = useCategory(); // Usa el contexto para obtener la categoría seleccionada
 
   // Utilizar el contexto del carrito
   const { addToCart } = useCart();
@@ -25,7 +25,7 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
   useEffect(() => {
     fetchProducts();
     fetchCategories();
-  }, []);
+  }, [selectedCategory]);
 
   const fetchProducts = () => {
     const url = selectedCategory
@@ -40,15 +40,6 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
     fetch('https://fakestoreapi.com/products/categories')
       .then(response => response.json())
       .then(data => setCategories(data));
-  };
-
-  useEffect(() => {
-    setCurrentPage(1);
-    fetchProducts();
-  }, [selectedCategory]);
-
-  const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
   };
 
   const handleProductAdded = () => {
@@ -90,7 +81,7 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
               <CategoryFilter 
                 categories={categories} 
                 selectedCategory={selectedCategory} 
-                onChange={handleCategoryChange} 
+                onChange={(category) => {}} // No necesita función de cambio aquí
               />
             </div>
             <div className="col-md-9">
