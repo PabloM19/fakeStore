@@ -6,6 +6,7 @@ import { FaBars, FaTimes, FaUser, FaSearch } from 'react-icons/fa';
 import './Header.css';
 import logo from '../assets/logo.png';
 import { useCategory } from '../contexts/CategoryContext';
+import Banner from './Banner';
 
 
 const Header = ({ username, onLogout }) => {
@@ -38,11 +39,12 @@ const Header = ({ username, onLogout }) => {
 
 
   return (
+    <div>
     <header className="bg-light py-4">
       <div className="container px-4 px-lg-5 d-flex justify-content-between align-items-center">
         <Link className="navbar-brand d-flex align-items-center" to="/products">
           <FaSearch className="me-2" />
-          <img src={logo} />
+          <img src={logo} alt="Logo de la tienda"/>
         </Link>
 
         <div className="d-none d-md-flex gap-3 align-items-center">
@@ -89,7 +91,10 @@ const Header = ({ username, onLogout }) => {
       </div>
 
       {showCart && <Cart onClose={() => setShowCart(false)} />}
+        
     </header>
+    <Banner/>
+    </div>
   );
 };
 

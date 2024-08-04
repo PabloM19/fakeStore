@@ -6,20 +6,19 @@ import Footer from './Footer';
 import CategoryFilter from './CategoryFilter';
 import AddProductForm from './AddProductForm';
 import Overlay from './Overlay';
-import { useCart } from '../contexts/CartContext'; // Importar el contexto del carrito
-import { useCategory } from '../contexts/CategoryContext'; // Importar el contexto de categoría
+import { useCart } from '../contexts/CartContext'; 
+import { useCategory } from '../contexts/CategoryContext';
 import './Overlay.css';
+import ProductToolbar from './ProductToolbar';
 
 const ProductList = ({ isAuthenticated, username, onLogout }) => {
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]); // Asegúrate de inicializar como un array vacío
   const [currentPage, setCurrentPage] = useState(1);
   const [message, setMessage] = useState(null);
   const [messageType, setMessageType] = useState(null);
   const productsPerPage = 12;
-  const { selectedCategory } = useCategory(); // Usa el contexto para obtener la categoría seleccionada
-
-  // Utilizar el contexto del carrito
+  const { selectedCategory } = useCategory(); 
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -39,7 +38,7 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
   const fetchCategories = () => {
     fetch('https://fakestoreapi.com/products/categories')
       .then(response => response.json())
-      .then(data => setCategories(data));
+      .then(data => setCategories(data || [])); // Proteger contra undefined
   };
 
   const handleProductAdded = () => {
@@ -61,7 +60,7 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleAddToCart = (product) => {
-    addToCart(product); // Añadir al carrito
+    addToCart(product); 
   };
 
   return (
@@ -75,13 +74,14 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
               <button type="button" className="btn-close" onClick={() => setMessage(null)}></button>
             </div>
           )}
+          <ProductToolbar categories={categories} />
           <div className="row">
-            <div className="col-md-3 mb-4" style={{display:"none"}}>
+            <div className="col-md-3 mb-4" style={{ display: "none" }}>
               <AddProductForm onProductAdded={handleProductAdded} setMessage={setMessage} setMessageType={setMessageType} />
-              <CategoryFilter 
-                categories={categories} 
-                selectedCategory={selectedCategory} 
-                onChange={(category) => {}} // No necesita función de cambio aquí
+              <CategoryFilter
+                categories={categories}
+                selectedCategory={selectedCategory}
+                onChange={(category) => { }} 
               />
             </div>
             <div className="col-md-12">
@@ -90,7 +90,7 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
                   <Product
                     key={product.id}
                     {...product}
-                    onAddToCart={() => handleAddToCart(product)} // Pasar la función al componente Product
+                    onAddToCart={() => handleAddToCart(product)} 
                     onDelete={handleProductDeleted}
                   />
                 ))}

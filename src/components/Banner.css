@@ -1,0 +1,39 @@
+.banner {
+    padding: 80px 112px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-image: url("../assets/collection-bg3.png");
+    box-sizing: border-box;
+    border: 0;
+    margin-bottom: 60px;
+  }
+  
+  .banner-content {
+    display: flex;
+    align-items: center;
+    height: 580px;
+  }
+  
+  .banner-text {
+    width: 50%;
+  }
+  
+  .banner-info {
+    width: 50%;
+  }
+  
+  .banner-description {
+    width: 66.6667%;
+    color: #fff;
+    line-height: 32px;
+    text-transform: capitalize;
+    font-size: 18px;
+    margin: 32px 0;
+  }
+  
+  .btn-light:hover {
+    color:white;
+    background-color: rgba(116, 116, 116, 0.459);
+  }
+  
