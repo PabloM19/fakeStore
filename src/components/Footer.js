@@ -1,7 +1,10 @@
 // src/components/Footer.js
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import FacebookLogo from '../assets/icons/facebook-logo.svg'
+import InstagramLogo from '../assets/icons/instagram-logo.svg'
+import LinkedinLogo from '../assets/icons/linkedin-logo.svg'
+import TwitterLogo from '../assets/icons/twitter-logo.svg'
 import logo from '../assets/logo.png';
 
 const Footer = () => {
@@ -21,10 +24,10 @@ const Footer = () => {
               Bienvenido a nuestra tienda de productos. Ofrecemos una amplia gama de artículos de alta calidad para satisfacer todas tus necesidades.
             </p>
             <div className="d-flex gap-3">
-              <FaFacebookF className="text-dark fs-4 cursor-pointer" />
-              <FaTwitter className="text-dark fs-4 cursor-pointer" />
-              <FaLinkedinIn className="text-dark fs-4 cursor-pointer" />
-              <FaInstagram className="text-dark fs-4 cursor-pointer" />
+              <img src={FacebookLogo} className="text-dark fs-4" style={{width:"20px", cursor:"pointer"}}/>
+              <img src={InstagramLogo} className="text-dark fs-4" style={{width:"20px", cursor:"pointer"}}/>
+              <img src={LinkedinLogo} className="text-dark fs-4" style={{width:"20px", cursor:"pointer"}}/>
+              <img src={TwitterLogo} className="text-dark fs-4" style={{width:"20px", cursor:"pointer"}}/>
             </div>
           </div>
 

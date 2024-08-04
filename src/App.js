@@ -9,6 +9,7 @@ import LoadingPage from './components/LoadingPage';
 import Cart from './components/Cart';
 import { CartProvider } from './contexts/CartContext';
 import { CategoryProvider } from './contexts/CategoryContext';
+import HomePage from './components/HomePage';
 
 function App() {
   const [authToken, setAuthToken] = useState(localStorage.getItem('authToken'));
@@ -49,12 +50,13 @@ const RouteWrapper = ({ authToken, setAuthToken, username, setUsername, handleLo
   const location = useLocation();
   
   // Check if the current route is not the login page or loading page
-  const shouldShowHeader = location.pathname !== '/login' && location.pathname !== '/loading' && location.pathname !== '/products' && !isLoggingOut;
+  const shouldShowHeader = location.pathname !== '/login' && location.pathname !== '/loading' && location.pathname !== '/products' && location.pathname !== '/home' && !isLoggingOut;
 
   return (
     <>
       {shouldShowHeader && <Header username={username} onLogout={handleLogout} />}
       <Routes>
+        <Route path="/home" element={<HomePage/>}/>
         <Route
           path="/login"
           element={<Login setAuthToken={setAuthToken} setUsername={setUsername} />}
@@ -65,7 +67,7 @@ const RouteWrapper = ({ authToken, setAuthToken, username, setUsername, handleLo
         />
         <Route path="/cart" element={<Cart />} />
         <Route path="/loading" element={<LoadingPage />} />
-        <Route path="/" element={<Navigate to="/login" />} /> {/* Redirige a /login por defecto */}
+        <Route path="/" element={<Navigate to="/home" />} /> {/* Redirige a /login por defecto */}
       </Routes>
     </>
   );

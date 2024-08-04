@@ -2,11 +2,13 @@ import React, { useState, useEffect  } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import Cart from './Cart';
-import { FaBars, FaTimes, FaUser, FaSearch } from 'react-icons/fa';
+import MenuIcon from '../assets/icons/menu.png'
+import CrossIcon from '../assets/icons/cross.png'
+import SearchIcon from '../assets/icons/search.png'
+import UserIcon from '../assets/icons/user.png'
 import './Header.css';
 import logo from '../assets/logo.png';
 import { useCategory } from '../contexts/CategoryContext';
-import Banner from './Banner';
 
 
 const Header = ({ username, onLogout }) => {
@@ -43,7 +45,7 @@ const Header = ({ username, onLogout }) => {
     <header className="bg-light py-4">
       <div className="container px-4 px-lg-5 d-flex justify-content-between align-items-center">
         <Link className="navbar-brand d-flex align-items-center" to="/products">
-          <FaSearch className="me-2" />
+        <img src={SearchIcon} className="me-2" style={{width:"20px", cursor:"pointer"}}/>
           <img src={logo} alt="Logo de la tienda"/>
         </Link>
 
@@ -51,7 +53,7 @@ const Header = ({ username, onLogout }) => {
           {username ? (
             <div className="d-flex align-items-center">
               <button className="btn btn-outline-dark" style={{ marginRight: "10px" }}>
-                <FaUser className="me-2" />
+              <img src={UserIcon} className="me-2" style={{width:"20px", cursor:"pointer"}}/>
                 <span className="navbar-text me-2">{username}</span>
               </button>
               <button className="btn btn-outline-dark" onClick={handleCartClick}>
@@ -68,7 +70,7 @@ const Header = ({ username, onLogout }) => {
 
         <div className="d-md-none">
           <button className="btn btn-link" onClick={toggleMenu}>
-            {isMenuOpen ? <FaTimes /> : <FaBars />}
+            {isMenuOpen ? <img src={CrossIcon} style={{width:"20px", cursor:"pointer"}}/> : <img src={MenuIcon}style={{width:"20px", cursor:"pointer"}} />}
           </button>
         </div>
       </div>
@@ -93,7 +95,6 @@ const Header = ({ username, onLogout }) => {
       {showCart && <Cart onClose={() => setShowCart(false)} />}
         
     </header>
-    <Banner/>
     </div>
   );
 };

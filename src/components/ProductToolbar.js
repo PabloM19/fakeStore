@@ -1,12 +1,12 @@
 import React from 'react';
-import { FaFilter } from 'react-icons/fa';
+import FilterIcon from '../assets/icons/filter.png'
 
 const ProductToolbar = ({ categories = [] }) => {
   return (
     <div className="d-flex justify-content-between align-items-center mb-4">
       <button className="btn btn-secondary">Añadir Nuevo Producto</button>
       <div className="d-flex align-items-center">
-        <FaFilter className="me-2" />
+        <img src={FilterIcon} className="me-2" style={{width:"35px", cursor:"pointer"}}/>
         <select className="form-select" style={{ color: '#FFF', backgroundColor: '#000' }}>
           <option value="default">Default</option>
           <option value="A-Z">A-Z</option>

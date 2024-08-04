@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import EyeIcon from '../assets/icons/eye.png'
+import EyeSlashIcon from '../assets/icons/eye-slash.png'
 import './Login.css';
 
 const Login = ({ setAuthToken, setUsername }) => {
@@ -69,23 +69,27 @@ const Login = ({ setAuthToken, setUsername }) => {
                 </div>
 
                 <div className="mb-3 position-relative">
-                  <label htmlFor="password" className="form-label">Contraseña</label>
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    className="form-control"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <button
-                    type="button"
-                    className="btn btn-link-secondary position-absolute end-0 top-0"
-                    style={{ marginTop: '8px' }}
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
-                  </button>
-                </div>
+            <label htmlFor="password" className="form-label">Contraseña</label>
+            <input
+                type={showPassword ? 'text' : 'password'}
+                className="form-control"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+                type="button"
+                className="btn btn-link-secondary position-absolute end-0 top-0"
+                style={{ marginTop: '8px', padding: 0, border: 'none', background: 'none' }}
+                onClick={() => setShowPassword(!showPassword)}
+            >
+                {showPassword ? (
+                    <img src={EyeSlashIcon} alt="Ocultar contraseña" style={{ width: "25px", cursor: "pointer" }} />
+                ) : (
+                    <img src={EyeIcon} alt="Mostrar contraseña" style={{ width: "25px", cursor: "pointer" }} />
+                )}
+            </button>
+        </div>
 
                 <button type="submit" className="btn btn-dark w-100">Iniciar Sesión</button>
               </form>

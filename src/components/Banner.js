@@ -11,7 +11,7 @@ const Banner = () => {
           <p className="banner-description">
           The most exclusive collection we have in Fake Store. If you wear any of our jewelry you will radiate luxury.
           </p>
-          <button className="btn btn-light">See Collection</button>
+          <button className="btn btn-light">Go Shopping!</button>
         </div>
       </div>
     </div>

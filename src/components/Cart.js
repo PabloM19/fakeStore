@@ -7,15 +7,15 @@ const Cart = ({ onClose }) => {
   return (
     <div className="cart-overlay">
       <div className="cart-container">
-        <button className="btn btn-close" onClick={onClose}>Cerrar</button>
-        <h2>Carrito</h2>
+        <button className="btn btn-close" onClick={onClose}>X</button>
+        <h2>Shopping Cart</h2>
         {cart.length === 0 ? (
-          <p>El carrito está vacío.</p>
+          <p>The cart is empty</p>
         ) : (
           <ul className="list-group">
             {cart.map((item) => (
               <li key={item.productId} className="list-group-item">
-                Producto ID: {item.productId} - Cantidad: {item.quantity}
+                Product ID: {item.productId} - Quantity: {item.quantity}
               </li>
             ))}
           </ul>
