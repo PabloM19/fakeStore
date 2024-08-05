@@ -67,7 +67,7 @@ const RouteWrapper = ({ authToken, setAuthToken, username, setUsername, handleLo
         />
         <Route path="/cart" element={<Cart />} />
         <Route path="/loading" element={<LoadingPage />} />
-        <Route path="/" element={<Navigate to="/home" />} /> {/* Redirige a /login por defecto */}
+        <Route path="/" element={<Navigate to="/home" />} /> {/* Redirige a /home por defecto */}
       </Routes>
     </>
   );

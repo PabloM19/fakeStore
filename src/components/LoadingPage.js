@@ -12,7 +12,7 @@ const LoadingPage = () => {
             setCountdown(prevCountdown => {
                 if (prevCountdown <= 1) {
                     clearInterval(countdownTimer); // Limpia el temporizador cuando la cuenta atrás termina
-                    navigate('/login'); // Redirige al login cuando la cuenta atrás llega a 0
+                    navigate('/home'); // Redirige al login cuando la cuenta atrás llega a 0
                 }
                 return prevCountdown - 1;
             });
