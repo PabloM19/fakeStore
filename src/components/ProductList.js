@@ -10,6 +10,7 @@ import { useCart } from '../contexts/CartContext';
 import { useCategory } from '../contexts/CategoryContext';
 import './Overlay.css';
 import ProductToolbar from './ProductToolbar';
+import ProductModal from './ProductModal';
 
 const ProductList = ({ isAuthenticated, username, onLogout }) => {
   const [products, setProducts] = useState([]);
@@ -20,6 +21,8 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
   const productsPerPage = 12;
   const { selectedCategory } = useCategory(); 
   const { addToCart } = useCart();
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     fetchProducts();
@@ -51,6 +54,16 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
     setProducts(products.filter(product => product.id !== deletedProductId));
     setMessage('Producto eliminado satisfactoriamente.');
     setMessageType('success');
+  };
+
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedProduct(null);
   };
 
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -92,8 +105,14 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
                     {...product}
                     onAddToCart={() => handleAddToCart(product)} 
                     onDelete={handleProductDeleted}
+                    onClick={() => handleProductClick(product)}
                   />
                 ))}
+                <ProductModal
+                 product={selectedProduct} 
+                 show={showModal} 
+                 handleClose={handleCloseModal} 
+                />
               </div>
               <Pagination
                 productsPerPage={productsPerPage}

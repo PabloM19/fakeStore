@@ -2,7 +2,7 @@ import React from 'react';
 import { useCart } from '../contexts/CartContext';
 import './Product.css'; // Asegúrate de que la ruta sea correcta
 
-const Product = ({ id, title, description, price, category, image, onDelete }) => {
+const Product = ({ id, title, description, price, category, image, onDelete, onClick  }) => {
   // Utilizar el contexto del carrito
   const { cart, dispatch } = useCart();
 
@@ -43,7 +43,7 @@ const Product = ({ id, title, description, price, category, image, onDelete }) =
   return (
     <div className="col-lg-2 col-md-3 col-sm-4 col-5">
       <div style={{marginBottom:"20px"}}>
-      <div className="card border-0" style={{boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.3)"}}>
+      <div className="card border-0" style={{boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.3)"}} onClick={onClick}>
         <img
           src={image}
           className="card-img-top"

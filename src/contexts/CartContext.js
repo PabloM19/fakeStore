@@ -25,10 +25,25 @@ const cartReducer = (state, action) => {
       };
     case 'REMOVE_FROM_CART':
       // Lógica para remover del carrito
-      return {
-        ...state,
-        cart: state.cart.filter(item => item.productId !== action.payload.productId)
-      };
+      const itemToRemove = state.cart.find(item => item.productId === action.payload.productId);
+      if (itemToRemove) {
+        if (itemToRemove.quantity > 1) {
+          return {
+            ...state,
+            cart: state.cart.map(item =>
+              item.productId === action.payload.productId
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+            )
+          };
+        } else {
+          return {
+            ...state,
+            cart: state.cart.filter(item => item.productId !== action.payload.productId)
+          };
+        }
+      }
+      return state;
     default:
       return state;
   }
