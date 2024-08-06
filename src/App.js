@@ -49,7 +49,6 @@ function App() {
 const RouteWrapper = ({ authToken, setAuthToken, username, setUsername, handleLogout, isLoggingOut }) => {
   const location = useLocation();
   
-  // Check if the current route is not the login page or loading page
   const shouldShowHeader = location.pathname !== '/login' && location.pathname !== '/loading' && location.pathname !== '/products' && location.pathname !== '/home' && !isLoggingOut;
 
   return (

@@ -34,11 +34,11 @@ const ProductModal = ({ product, show, handleClose, onDelete }) => {
         .then(data => {
           console.log('Product deleted:', data);
           onDelete(product.id);
-          alert(`El producto "${product.title}" ha sido eliminado exitosamente.`);
+          alert(`The product "${product.title}" has been deleted correctly.`);
         })
         .catch(error => {
           console.error('Error:', error);
-          alert('Hubo un error al intentar eliminar el producto.');
+          alert('There was an error deleting the product.');
         });
     }
   };
@@ -84,13 +84,6 @@ const ProductModal = ({ product, show, handleClose, onDelete }) => {
                     Add to cart
                   </Button>
                 )}
-                <Button 
-                  variant="outline-danger" 
-                  className="w-100 mt-2" 
-                  onClick={handleDeleteProduct}
-                >
-                  Delete product
-                </Button>
               </div>
             </div>
           </div>

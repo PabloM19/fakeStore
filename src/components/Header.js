@@ -2,14 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
+import { useCategory } from '../contexts/CategoryContext';
+import { Dropdown } from 'react-bootstrap';
+
 import Cart from './Cart';
 import MenuIcon from '../assets/icons/menu.png';
 import CrossIcon from '../assets/icons/cross.png';
 import UserIcon from '../assets/icons/user.png';
 import '../styles/Header.css';
 import logo from '../assets/logo.png';
-import { useCategory } from '../contexts/CategoryContext';
-import { Dropdown } from 'react-bootstrap';
+
 
 const Header = ({ username, onLogout }) => {
   const [showCart, setShowCart] = useState(false);
@@ -54,7 +56,6 @@ const Header = ({ username, onLogout }) => {
             <img src={logo} alt="Logo de la tienda" />
           </Link>
 
-          {/* Elementos para dispositivos grandes */}
           <div className="d-none d-md-flex gap-3 align-items-center">
             {username ? (
               <div className="d-flex align-items-center">
@@ -81,7 +82,6 @@ const Header = ({ username, onLogout }) => {
             )}
           </div>
 
-          {/* Botón de menú para dispositivos móviles */}
           <div className="d-md-none">
             <button className="btn btn-link" onClick={toggleMenu}>
               {isMenuOpen ? (
@@ -97,7 +97,6 @@ const Header = ({ username, onLogout }) => {
           <hr style={{ width: '1200px' }}></hr>
         </div>
 
-        {/* Categorías para dispositivos grandes */}
         <div className="d-none d-md-block">
           <ul className="nav justify-content-center py-2">
             <li className="nav-item">
@@ -121,7 +120,6 @@ const Header = ({ username, onLogout }) => {
           </ul>
         </div>
 
-        {/* Menú desplegable para dispositivos móviles */}
         {isMenuOpen && (
           <div className="container px-4 px-lg-5 d-md-none">
             <ul className="nav flex-column py-2">

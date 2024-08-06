@@ -54,14 +54,14 @@ const Product = ({ id, title, description, price, category, image, onDelete, onC
                 className="me-2" 
                 style={{ height: '25px', cursor: 'pointer' }} 
                 onClick={handleDelete} 
-                alt="Eliminar producto" 
+                alt="delete icon" 
               />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Modal de confirmación */}
+
       {showModal && (
         <div className="modal fade show d-block" tabIndex="-1" role="dialog" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
           <div className="modal-dialog modal-dialog-centered" role="document">

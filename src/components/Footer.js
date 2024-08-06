@@ -1,6 +1,7 @@
 // src/components/Footer.js
 import React from "react";
 import { Link } from "react-router-dom";
+
 import FacebookLogo from '../assets/icons/facebook-logo.svg';
 import InstagramLogo from '../assets/icons/instagram-logo.svg';
 import LinkedinLogo from '../assets/icons/linkedin-logo.svg';
@@ -12,10 +13,8 @@ const Footer = () => {
 
   return (
     <footer className="bg-light text-dark pt-5">
-      {/* Footer top */}
       <div className="container">
         <div className="row mb-5">
-          {/* Company info */}
           <div className="col-md-9">
             <Link to="/">
               <img src={logo} alt="Logo de la tienda" className="img-fluid mb-3" />
@@ -25,7 +24,6 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Social media icons */}
           <div className="col-md-3 d-flex justify-content-center align-items-center">
             <div className="row text-center">
               <div className="col-6 mb-2">
@@ -45,7 +43,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Footer bottom */}
       <div className="bg-secondary text-center py-3">
         <p className="mb-0 text-white">Developed by Pablo Molero. {currentYear}</p>
       </div>

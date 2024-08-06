@@ -1,7 +1,6 @@
-/* src/styles/Header.css */
 .btn{
   display: flex;
-  align-items: center;  /* Centra verticalmente */
+  align-items: center;
   justify-content: center;
   height: 50px;
 }

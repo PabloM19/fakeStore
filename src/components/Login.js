@@ -9,7 +9,7 @@ import '../styles/Login.css';
 const Login = ({ setAuthToken, setUsername }) => {
   const [username, setUsernameInput] = useState('');
   const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
+  const [rememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();

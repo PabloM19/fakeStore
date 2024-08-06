@@ -27,7 +27,7 @@ const AddProductForm = ({ onProductAdded, handleClose }) => {
 
     // Validar los campos
     if (!name || !price || !category || !description || !image) {
-      setMessage('Todos los campos son obligatorios.');
+      setMessage('You must fill in all the fields.');
       setMessageType('danger');
       return;
     }
@@ -52,7 +52,7 @@ const AddProductForm = ({ onProductAdded, handleClose }) => {
       .then(response => response.json())
       .then(data => {
         console.log('Product added:', data);
-        setMessage('Producto creado correctamente.');
+        setMessage('Product added correctly.');
         setMessageType('success');
         onProductAdded();
         setName('');
@@ -63,7 +63,7 @@ const AddProductForm = ({ onProductAdded, handleClose }) => {
       })
       .catch(error => {
         console.error('Error:', error);
-        setMessage('Error al crear el producto.');
+        setMessage('Error creating the product.');
         setMessageType('danger');
       });
   };

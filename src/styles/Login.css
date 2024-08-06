@@ -1,7 +1,5 @@
-/* src/components/Login.css */
-
 .login-container {
-  min-height: 100vh; /* Ocupa toda la altura de la ventana */
+  min-height: 100vh;
 }
 
 .contenedorlogin {

@@ -18,7 +18,6 @@ const ProductToolbar = ({ categories = [] }) => {
   };
 
   const handleProductAdded = () => {
-    //setShowModal(false);
     // Cerrar el modal después de 1 segundo
     setTimeout(() => {
       setMessage(''); // Limpiar mensaje

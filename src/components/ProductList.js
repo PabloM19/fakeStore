@@ -45,14 +45,14 @@ const ProductList = ({ isAuthenticated, username, onLogout }) => {
   };
 
   const handleProductAdded = () => {
-    setMessage('Producto creado correctamente.');
+    setMessage('Product created correctly.');
     setMessageType('success');
     fetchProducts();
   };
 
   const handleProductDeleted = (deletedProductId) => {
     setProducts(products.filter(product => product.id !== deletedProductId));
-    setMessage('Producto eliminado satisfactoriamente.');
+    setMessage('Product deleted correctly.');
     setMessageType('success');
   };
 
