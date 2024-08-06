@@ -25,8 +25,8 @@ const LoadingPage = () => {
     return (
         <div className="overlay">
             <div className="overlay-content">
-                <h1>Sesión cerrada correctamente</h1>
-                <p>Redirigiendo al login en {countdown}...</p>
+                <h1>Session closed correctly</h1>
+                <p>Redirecting to login in {countdown}...</p>
             </div>
         </div>
     );

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'; // Importar useNavigate
 import { useCategory } from '../contexts/CategoryContext';
 import Header from './Header';
 import Footer from './Footer';
-import './HomePage.css';
+import '../styles/HomePage.css';
 import carrusel1 from '../assets/carrusel1.png';
 import carrusel2 from '../assets/carrusel2.png';
 import carrusel3 from '../assets/carrusel3.png';
@@ -68,10 +68,10 @@ const HomePage = () => {
                                     </div>
                                     <div className="mt-auto">
                                         <Card.Text>
-                                            <strong>Category:</strong> {product.category}
+                                        <strong><span className="text-success">${product.price.toFixed(2)}</span></strong>
                                         </Card.Text>
                                         <Card.Text>
-                                            <strong>Price:</strong> ${product.price.toFixed(2)}
+                                            {product.category}
                                         </Card.Text>
                                     </div>
                                 </Card.Body>

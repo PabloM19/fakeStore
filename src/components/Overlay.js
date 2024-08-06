@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Overlay.css';
+import '../styles/Overlay.css';
 
 const Overlay = () => {
   const [counter, setCounter] = useState(3); // Cuenta regresiva de 5 segundos
@@ -25,8 +25,8 @@ const Overlay = () => {
   return (
     <div className="overlay">
       <div className="overlay-content">
-        <h2>¡Vaya! No estás logueado.</h2>
-        <p>Serás redirigido al inicio de sesión en {counter} segundos...</p>
+        <h2>¡Oh, well... You aren't loged in!</h2>
+        <p>Redirecting to login in {counter}...</p>
       </div>
     </div>
   );

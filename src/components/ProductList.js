@@ -8,7 +8,7 @@ import AddProductForm from './AddProductForm';
 import Overlay from './Overlay';
 import { useCart } from '../contexts/CartContext'; 
 import { useCategory } from '../contexts/CategoryContext';
-import './Overlay.css';
+import '../styles/Overlay.css';
 import ProductToolbar from './ProductToolbar';
 import ProductModal from './ProductModal';
 

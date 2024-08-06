@@ -46,8 +46,7 @@ const ProductModal = ({ product, show, handleClose, onDelete }) => {
   return (
     <Modal show={show} onHide={handleClose} centered size="lg">
       <Modal.Footer className="border-0">
-        <Button variant="secondary" onClick={handleClose}>
-          X
+        <Button variant="close" onClick={handleClose}>
         </Button>
       </Modal.Footer>
       <Modal.Body className="p-4">

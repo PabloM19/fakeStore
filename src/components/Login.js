@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import EyeIcon from '../assets/icons/eye.png'
 import EyeSlashIcon from '../assets/icons/eye-slash.png'
-import './Login.css';
+import '../styles/Login.css';
 
 const Login = ({ setAuthToken, setUsername }) => {
   const [username, setUsernameInput] = useState('');
@@ -17,7 +17,7 @@ const Login = ({ setAuthToken, setUsername }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (username === '' || password === '') {
-      setError('Por favor, completa todos los campos');
+      setError('Please, fill all the blanks');
       return;
     }
 
@@ -34,10 +34,10 @@ const Login = ({ setAuthToken, setUsername }) => {
           if (rememberMe) localStorage.setItem('authToken', json.token);
           navigate('/products');
         } else {
-          setError('Usuario o contraseña incorrectos');
+          setError('Incorrect username or password');
         }
       })
-      .catch(() => setError('Error en la conexión con el servidor'));
+      .catch(() => setError('Error connecting with the server'));
   };
 
   return (
@@ -53,12 +53,12 @@ const Login = ({ setAuthToken, setUsername }) => {
           </div>
           <div className="col-md-6">
             <div className="card-body">
-              <h2 className="card-title">Iniciar Sesión</h2>
+              <h2 className="card-title">Login</h2>
               {error && <div className="alert alert-danger">{error}</div>}
 
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label htmlFor="username" className="form-label">Nombre de usuario</label>
+                  <label htmlFor="username" className="form-label">Username</label>
                   <input
                     type="text"
                     className="form-control"
@@ -69,7 +69,7 @@ const Login = ({ setAuthToken, setUsername }) => {
                 </div>
 
                 <div className="mb-3 position-relative">
-            <label htmlFor="password" className="form-label">Contraseña</label>
+            <label htmlFor="password" className="form-label">Password</label>
             <input
                 type={showPassword ? 'text' : 'password'}
                 className="form-control"
@@ -84,14 +84,14 @@ const Login = ({ setAuthToken, setUsername }) => {
                 onClick={() => setShowPassword(!showPassword)}
             >
                 {showPassword ? (
-                    <img src={EyeSlashIcon} alt="Ocultar contraseña" style={{ width: "25px", cursor: "pointer" }} />
+                    <img src={EyeIcon} alt="Ocultar contraseña" style={{ width: "25px", cursor: "pointer" }} />
                 ) : (
-                    <img src={EyeIcon} alt="Mostrar contraseña" style={{ width: "25px", cursor: "pointer" }} />
+                    <img src={EyeSlashIcon} alt="Mostrar contraseña" style={{ width: "25px", cursor: "pointer" }} />
                 )}
             </button>
         </div>
 
-                <button type="submit" className="btn btn-dark w-100">Iniciar Sesión</button>
+                <button type="submit" className="btn btn-dark w-100">Login</button>
               </form>
             </div>
           </div>

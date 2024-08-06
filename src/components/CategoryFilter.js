@@ -9,7 +9,7 @@ const CategoryFilter = ({ categories, selectedCategory, onChange }) => {
         value={selectedCategory} 
         onChange={(e) => onChange(e.target.value)}
       >
-        <option value="">Todas las categorías</option>
+        <option value="">All categories</option>
         {categories.map(category => (
           <option key={category} value={category}>
             {category.charAt(0).toUpperCase() + category.slice(1)}

@@ -1,0 +1,96 @@
+/* src/styles/Header.css */
+.btn{
+  display: flex;
+  align-items: center;  /* Centra verticalmente */
+  justify-content: center;
+  height: 50px;
+}
+
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.cart-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  float: right;
+}
+
+.nav-link {
+  color: #333;
+}
+
+.nav-link:hover {
+  color: #555;
+}
+
+.hr-container {
+  display: flex;
+  justify-content: center; /* Centra el <hr> horizontalmente */
+  margin: 10px 0; /* Ajusta el margen superior e inferior si es necesario */
+}
+
+.hr-container hr {
+  width: 80%; /* Ajusta el ancho del <hr> como desees */
+  height:1px;
+  border:0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+/* Ajustes para el menú móvil */
+@media (max-width: 768px) {
+  .navbar-brand {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: left;
+    padding: 10px 0;
+  }
+
+  .d-md-none .btn-link img {
+    width: 20px;
+  }
+
+  .container .btn-link {
+    margin: 10px 0;
+  }
+
+  .d-md-block {
+    display: none;
+  }
+
+  .d-md-none {
+    display: block !important;
+  }
+}

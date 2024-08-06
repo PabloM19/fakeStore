@@ -18,21 +18,25 @@ const ProductToolbar = ({ categories = [] }) => {
   };
 
   const handleProductAdded = () => {
-    setShowModal(false);
-    // Aquí puedes agregar lógica adicional, como actualizar la lista de productos
+    //setShowModal(false);
+    // Cerrar el modal después de 1 segundo
+    setTimeout(() => {
+      setMessage(''); // Limpiar mensaje
+      handleCloseModal();  // Cerrar el modal
+    }, 1000);
   };
 
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center mb-4">
         <button className="btn btn-secondary" onClick={handleOpenModal}>
-          Añadir Nuevo Producto
+          Add new product
         </button>
       </div>
 
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Añadir Producto</Modal.Title>
+          <Modal.Title>Add product</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <AddProductForm

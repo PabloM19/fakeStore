@@ -5,11 +5,11 @@ import { useCart } from '../contexts/CartContext';
 import Cart from './Cart';
 import MenuIcon from '../assets/icons/menu.png';
 import CrossIcon from '../assets/icons/cross.png';
-import SearchIcon from '../assets/icons/search.png';
 import UserIcon from '../assets/icons/user.png';
-import './Header.css';
+import '../styles/Header.css';
 import logo from '../assets/logo.png';
 import { useCategory } from '../contexts/CategoryContext';
+import { Dropdown } from 'react-bootstrap';
 
 const Header = ({ username, onLogout }) => {
   const [showCart, setShowCart] = useState(false);
@@ -51,33 +51,37 @@ const Header = ({ username, onLogout }) => {
       <header className="bg-light py-4">
         <div className="container px-4 px-lg-5 d-flex justify-content-between align-items-center">
           <Link className="navbar-brand d-flex align-items-center" to="/home">
-            <img src={SearchIcon} className="me-2" style={{ width: '20px', cursor: 'pointer' }} />
             <img src={logo} alt="Logo de la tienda" />
           </Link>
 
+          {/* Elementos para dispositivos grandes */}
           <div className="d-none d-md-flex gap-3 align-items-center">
             {username ? (
               <div className="d-flex align-items-center">
-                <button className="btn btn-outline-dark" style={{ marginRight: '10px' }}>
-                  <img src={UserIcon} className="me-2" style={{ width: '20px', cursor: 'pointer' }} />
-                  <span className="navbar-text me-2">{username}</span>
-                </button>
-                <button className="btn btn-outline-dark" onClick={handleCartClick}>
+                <Dropdown>
+                  <Dropdown.Toggle variant="outline-dark" id="dropdown-basic" className="d-flex align-items-center">
+                    <img src={UserIcon} className="me-2" style={{ width: '20px', cursor: 'pointer' }} />
+                    <span className="navbar-text me-2">{username}</span>
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu align="end">
+                    <Dropdown.Item onClick={onLogout}>Logout</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <button className="btn btn-outline-dark ms-3" onClick={handleCartClick}>
                   <i className="bi bi-cart-fill me-1"></i>
                   Cart
                   <span className="badge bg-dark text-white ms-1 rounded-pill">{totalItems}</span>
                 </button>
-                <button className="btn btn-link" onClick={onLogout}>
-                  Logout
-                </button>
               </div>
             ) : (
-              <Link className="btn btn-link" to="/login">
+              <Link className="btn btn-outline-dark" to="/login">
                 Login
               </Link>
             )}
           </div>
 
+          {/* Botón de menú para dispositivos móviles */}
           <div className="d-md-none">
             <button className="btn btn-link" onClick={toggleMenu}>
               {isMenuOpen ? (
@@ -88,10 +92,13 @@ const Header = ({ username, onLogout }) => {
             </button>
           </div>
         </div>
+
         <div className="hr-container">
           <hr style={{ width: '1200px' }}></hr>
         </div>
-        <div className={`container px-4 px-lg-5 ${isMenuOpen ? '' : 'd-none'} d-md-block`}>
+
+        {/* Categorías para dispositivos grandes */}
+        <div className="d-none d-md-block">
           <ul className="nav justify-content-center py-2">
             <li className="nav-item">
               <button
@@ -113,6 +120,55 @@ const Header = ({ username, onLogout }) => {
             ))}
           </ul>
         </div>
+
+        {/* Menú desplegable para dispositivos móviles */}
+        {isMenuOpen && (
+          <div className="container px-4 px-lg-5 d-md-none">
+            <ul className="nav flex-column py-2">
+              {username ? (
+                <div>
+                  <Dropdown>
+                    <Dropdown.Toggle variant="outline-dark" id="dropdown-basic" className="d-flex align-items-center w-100 mb-2">
+                      <img src={UserIcon} className="me-2" style={{ width: '20px' }} />
+                      <span className="navbar-text">{username}</span>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu align="end" className="w-100">
+                      <Dropdown.Item onClick={onLogout}>Logout</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  <button className="btn btn-outline-dark w-100 mb-2" onClick={handleCartClick}>
+                    <i className="bi bi-cart-fill me-1"></i>
+                    Cart
+                    <span className="badge bg-dark text-white ms-1 rounded-pill">{totalItems}</span>
+                  </button>
+                </div>
+              ) : (
+                <Link className="btn btn-outline-dark" to="/login">
+                  Login
+                </Link>
+              )}
+              <li className="nav-item">
+                <button
+                  className="nav-link text-dark btn btn-link"
+                  onClick={() => handleCategoryClick('')}
+                >
+                  See All
+                </button>
+              </li>
+              {categories.map((category) => (
+                <li className="nav-item" key={category}>
+                  <button
+                    className="nav-link text-dark btn btn-link"
+                    onClick={() => handleCategoryClick(category)}
+                  >
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {showCart && <Cart onClose={() => setShowCart(false)} />}
       </header>
